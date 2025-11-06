@@ -15,7 +15,7 @@ header {
     background-color: #000;
     padding: 20px 0;
     text-align: center;
-    border-bottom: 2px solid #8CACC5;
+    border-bottom: 2px solid #bbdefb;
     position: relative;
 }
 
@@ -116,3 +116,4 @@ footer p {
     font-size: 1rem;
 
 }
+
