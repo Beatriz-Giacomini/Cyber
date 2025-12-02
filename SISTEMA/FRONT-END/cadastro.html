@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <div>
+        <img src="Fios.png" alt="" width="50%"><img src="Fios.png" alt="" width="50%">
+    </div>
+
+    <!-- HOME -->
+    <!-- Barra de Navegação -->
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="fale_conosco.html">FALE CONOSCO</a>
+        <a href="cadastro.html">CADASTRO</a>
+        <a href="login.html">LOGIN</a>
+    </nav>
+
+    <div class="page-cadastro">
+        <div class="container-cadastro">
+            <h1 class="h_cadastro">CADASTRA-SE</h1>
+            <div class="form-control"> <input type="text" id="nome_cadastro" required=""> <label> <span
+                        style="transition-delay:0ms">N</span><span style="transition-delay:50ms">o</span><span
+                        style="transition-delay:100ms">m</span><span style="transition-delay:150ms">e</span> </label>
+            </div>
+            <div class="form-control"> <input type="email" id="email_cadastro" required=""> <label> <span
+                        style="transition-delay:0ms">E</span><span style="transition-delay:50ms">-</span><span
+                        style="transition-delay:100ms">m</span><span style="transition-delay:150ms">a</span><span
+                        style="transition-delay:200ms">i</span><span style="transition-delay:250ms">l</span> </label>
+            </div>
+            <div class="form-control"> <input type="password" id="senha_cadastro" required=""> <label> <span
+                        style="transition-delay:0ms">S</span><span style="transition-delay:50ms">e</span><span
+                        style="transition-delay:100ms">n</span><span style="transition-delay:150ms">h</span><span
+                        style="transition-delay:200ms">a</span> </label> </div> <button type="button"
+                class="form-submit-btn btn_cadastro" id="btn_cadastro">Cadastrar</button>
+            <p class="resultado" id="resultado_cadastro">O resultado irá aparecer aqui</p>
+        </div>
+    </div>
+</body>
+<script>
+    document.getElementById("btn_cadastro").addEventListener("click", async () => {
+        const nome = document.getElementById("nome_cadastro").value
+        const email = document.getElementById("email_cadastro").value
+        const senha = document.getElementById("senha_cadastro").value
+
+        const resposta = await fetch(`http://localhost:3000/cadastro`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "nome": nome,
+                "email": email,
+                "senha": senha
+            })
+        })
+
+        if (resposta.ok == true) {
+            const dados = await resposta.json()
+            document.getElementById("resultado_cadastro").innerText = dados.resposta
+        } else {
+
+        }
+    })
+
+</script>
+
+</html>
